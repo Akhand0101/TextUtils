@@ -1,31 +1,15 @@
 import React, { useState } from "react";
 
 export default function About(props) {
-    const [myStyle, setMyStyle] = useState({
-        color: "black",
-        backgroundColor: "white",
-    });
 
-    const[btnText,setBtnText]=useState("Enable Dark Mode")
-
-    const toggleStyle = () => {
-        if (myStyle.color === "black") {
-            setMyStyle({
-                color: "white",
-                backgroundColor: "black",
-            });
-            setBtnText("Enable Light Mode")
-        } else {
-            setMyStyle({
-                color: "black",
-                backgroundColor: "white",
-            });
-            setBtnText("Enable Dark Mode")
-        }
-    }; // <--- Added semicolon here
-
+    let myStyle ={
+        color: props.mode === 'light' ? 'rgb(52, 58, 64)' : 'white',
+        backgroundColor : props.mode === 'light' ? 'white' : 'rgb(63, 72, 81)',
+     
+    }
+  
     return (
-        <div className={`container text-${props.mode === 'light' ? 'dark' : 'light'}`}>
+        <div className={`container text-${props.mode === 'light' ? 'rgb(52, 58, 64)' : 'white'}`} >
             <h1 className="m" >
                 About Us
             </h1>
@@ -33,7 +17,7 @@ export default function About(props) {
                 <div className="accordion-item" style={myStyle}>
                     <h2 className="accordion-header">
                         <button
-                            className="accordion-button"
+                            className="accordion-button "
                             type="button"
                             style={myStyle}
                             data-bs-toggle="collapse"
@@ -118,14 +102,7 @@ export default function About(props) {
                     </div>
                 </div>
             </div>
-            <div className="container">
-                <button
-                    className="btn btn-primary my-3 mx-4"
-                    onClick={toggleStyle}
-                >
-                    {btnText}
-                </button>
-            </div>
+           
         </div>
     );
 }

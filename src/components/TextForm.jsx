@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter Text Here");
+  const [text, setText] = useState("");
 
   const handleOnChange = (event) => {
     const inputText = event.target.value;
@@ -29,6 +29,7 @@ export default function TextForm(props) {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Text Copied!", "success");
   };
 
@@ -59,25 +60,26 @@ export default function TextForm(props) {
             rows="8"
           ></textarea>
         </div>
-        <button className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2`} onClick={handleOnclick}>
+        <button disabled={text.length==0} className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2 my-1`} onClick={handleOnclick}>
           Convert to Uppercase
         </button>
-        <button className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2`} onClick={handleOnlo}>
+        <button disabled={text.length==0}className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2 my-1`} onClick={handleOnlo}>
           Convert to LowerCase
         </button>
-        <button className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2`} onClick={clearText}>
+        <button disabled={text.length==0}className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2 my-1`} onClick={clearText}>
           Clear Text
         </button>
-        <button className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2`} onClick={handleCopy}>
+        <button disabled={text.length==0}className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2 my-1`} onClick={handleCopy}>
           Copy Text
         </button>
-        <button className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2`} onClick={handleSpaces}>
+        <button  disabled={text.length==0} className={`btn btn-${props.mode === 'light' ? 'secondary' : 'light'} mx-2 my-1`} onClick={handleSpaces}>
           Remove Extra Spaces
         </button>
 
         <div className="container">
           <h1>Your Summary here</h1>
           <p>{wordCount} words and {text.length} characters</p>
+          <p>{0.008*text.split(" ").filter(word => word.length > 0).length} minutes to read</p>
         </div>
       </div>
     </>

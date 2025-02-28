@@ -4,7 +4,7 @@ import './App.css'
 // import "bootstrap/dist/js/bootstrap.bundle"
 import Navbar from './components/navbar'
 import TextForm from './components/TextForm'
-import About from './components/about'
+import About from './components/About'
 import Alert from "./components/Alert";
 import {
   BrowserRouter,
